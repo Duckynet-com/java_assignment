@@ -48,6 +48,7 @@ jobs:
 
       - name: Run Test
         run: |
-          cd ../../test-repo/test
+          cd test-repo/test
           javac -cp .:../../main-repo/src HelloWorldTest.java
           java -cp .:../../main-repo/src org.junit.runner.JUnitCore HelloWorldTest
+
