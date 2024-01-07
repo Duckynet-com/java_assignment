@@ -29,8 +29,10 @@ jobs:
       - name: Extract Base Repository Name
         run: |
           # Splitting the repository name and concatenating the first three parts
-          IFS='-' read -ra ADDR <<< "$GITHUB_REPOSITORY"
-          FOLDER_NAME="${ADDR[1]}"
+          IFS='-' read -ra ADDROne <<< "$GITHUB_REPOSITORY"
+          DIRTY_FOLDER_NAME="${ADDROne[1]}"
+          IFS='/' read -ra ADDRTwo <<< "$DIRTY_FOLDER_NAME"
+          FOLDER_NAME="${ADDRTwo[1]}"
           echo "Base Repo Name: $FOLDER_NAME"
           # Set the base name as an environment variable
           echo "FOLDER_NAME=$FOLDER_NAME" >> $GITHUB_ENV
