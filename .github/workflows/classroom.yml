@@ -16,13 +16,10 @@ jobs:
     if: github.actor != 'github-classroom[bot]'
     steps:
       - name: Checkout Main Repository
-        uses: actions/checkout@v2
-        with:
-          repository: Duckynet-com/java_assignment
-          path: main-repo
+        uses: actions/checkout@v4
 
       - name: Checkout Test Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: Duckynet-com/java_assignment_test
           path: test-repo
