@@ -26,6 +26,20 @@ jobs:
           repository: Duckynet-com/java_assignment_test
           path: test-repo
 
+      - name: Extract Base Repository Name
+        run: |
+          # Splitting the repository name and concatenating the first three parts
+          IFS='-' read -ra ADDR <<< "$GITHUB_REPOSITORY"
+          REPO_BASE_NAME="${ADDR[0]}-${ADDR[1]}-${ADDR[2]}"
+          echo "Base Repo Name: $REPO_BASE_NAME"
+          # Set the base name as an environment variable
+          echo "REPO_BASE_NAME=$REPO_BASE_NAME" >> $GITHUB_ENV
+
+      - name: Use Base Repository Name
+        run: |
+          # Use the base repository name in your steps
+          echo "Base Repository Name is $REPO_BASE_NAME"
+
       - name: List directories for debugging
         run: |
           ls -l
@@ -52,6 +66,6 @@ jobs:
 
       - name: Compile and Run Tests
         run: |
-          cd test-repo/test
+          cd test-repo/${{ env.REPO_BASE_NAME }}
           javac -cp .:../../main-repo/src:../../lib/junit-platform-console-standalone.jar AppTest.java
           java -jar ../../lib/junit-platform-console-standalone.jar --class-path .:../../main-repo/src --scan-classpath
