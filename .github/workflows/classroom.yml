@@ -30,7 +30,7 @@ jobs:
         run: |
           # Splitting the repository name and concatenating the first three parts
           IFS='-' read -ra ADDR <<< "$GITHUB_REPOSITORY"
-          REPO_BASE_NAME="${ADDR[0]}-${ADDR[1]}-${ADDR[2]}"
+          REPO_BASE_NAME="${ADDR[0]}-${ADDR[1]}"
           echo "Base Repo Name: $REPO_BASE_NAME"
           # Set the base name as an environment variable
           echo "REPO_BASE_NAME=$REPO_BASE_NAME" >> $GITHUB_ENV
